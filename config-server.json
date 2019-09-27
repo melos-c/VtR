@@ -32,7 +32,22 @@
         "refresh": 3
       }
     },
-
+    {
+      "tag": "ss",
+      "port": 20087,
+      "protocol": "shadowsocks",
+      "settings": {
+        "method": "chacha20-ietf-poly1305",
+        "ota": true,
+        "password": "sSCI2016",
+        "network": "tcp,udp"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "auto",
+        "tcpSettings": {}
+      }
+    },
     {
       "tag": "android",
       "port": 20086,
