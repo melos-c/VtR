@@ -29,7 +29,8 @@ systemctl start v2ray
 systemctl status v2ray
 systemctl enable v2ray
 
-firewall-cmd --zone=public --add-port=10086/tcp --permanent
+#firewall-cmd --zone=public --add-port=10086/tcp --permanent
+firewall-cmd --zone=public --add-port=20000-30000/tcp --permanent
 firewall-cmd --reload
 
 wget –no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
