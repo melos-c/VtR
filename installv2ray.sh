@@ -19,6 +19,10 @@ cp ./systemd/v2ray.service /usr/lib/systemd/system
 touch /var/log/v2ray/access.log
 touch /var/log/v2ray/error.log
 touch /var/run/v2ray.pid
+cd ..
+
+cd /etc/v2ray/
+wget -O config.json https://github.com/melos-c/VtR/blob/master/config-server.json
 
 systemctl start v2ray
 systemctl status v2ray
