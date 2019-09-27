@@ -32,15 +32,7 @@
         "refresh": 3
       }
     },
-    {
-      "port": 20087,
-      "protocol": "shadowsocks",
-      "settings": {
-        "method": "chacha20-itef-poly1305",
-        "ota": true,
-        "password": "sSCI+-2016"
-      }
-    },
+
     {
       "tag": "android",
       "port": 20086,
