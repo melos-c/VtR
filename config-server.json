@@ -1,41 +1,85 @@
 {
   "inbounds": [
-  {
-    "port": 10086,
-    "protocol": "vmess",
-    "settings": 
     {
-      "clients": [{
-          "id": "464bf080-3aaa-4ee4-a888-a4dbdc3010c2",
-          "level": 1,
-          "alterId": 64}],
-     "detour":{"to": "dynamicport"}
-     }
-  },
-  {
+      "port": 10086,
       "protocol": "vmess",
-      "port": "10000-20000", 
-      "tag": "dynamicPort",  
-      "settings": {"default": {"alterId": 64}},
+      "settings": {
+        "clients": [
+          {
+            "id": "464bf080-3aaa-4ee4-a888-a4dbdc3010c2",
+            "level": 1,
+            "alterId": 64,
+            "security": "auto"
+          }
+        ],
+        "detour": {
+          "to": "dynamicport"
+        }
+      }
+    },
+    {
+      "protocol": "vmess",
+      "port": "10000-20000",
+      "tag": "dynamicPort",
+      "settings": {
+        "default": {
+          "alterId": 64
+        }
+      },
       "allocate": {
-        "strategy": "random", 
-        "concurrency": 2, 
-        "refresh": 3}
-   }
-],
-  "outbounds": [{
-    "protocol": "freedom",
-    "settings": {}
-  },{
-    "protocol": "blackhole",
-    "settings": {},
-    "tag": "blocked"
-  }],
+        "strategy": "random",
+        "concurrency": 2,
+        "refresh": 3
+      }
+    },
+    {
+      "port": 20087,
+      "protocol": "shadowsocks",
+      "settings": {
+        "method": "chacha20-itef-poly1305",
+        "ota": true,
+        "password": "sSCI+-2016"
+      }
+    },
+    {
+      "tag": "android",
+      "port": 20086,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "5a121c68-c6b9-44ad-8816-db86dbe5d5fc",
+            "level": 1,
+            "alterId": 64,
+            "security": "auto"
+          }
+        ],
+        "streamSettings": {
+          "network": "tcp",
+          "security": "auto",
+          "tcpSettings": {}
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "blocked"
+    }
+  ],
   "routing": {
     "rules": [
       {
         "type": "field",
-        "ip": ["geoip:private"],
+        "ip": [
+          "geoip:private"
+        ],
         "outboundTag": "blocked"
       }
     ]
