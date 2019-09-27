@@ -1,0 +1,43 @@
+{
+  "inbounds": [
+  {
+    "port": 10086,
+    "protocol": "vmess",
+    "settings": 
+    {
+      "clients": [{
+          "id": "464bf080-3aaa-4ee4-a888-a4dbdc3010c2",
+          "level": 1,
+          "alterId": 64}],
+     "detour":{"to": "dynamicport"}
+     }
+  },
+  {
+      "protocol": "vmess",
+      "port": "10000-20000", 
+      "tag": "dynamicPort",  
+      "settings": {"default": {"alterId": 64}},
+      "allocate": {
+        "strategy": "random", 
+        "concurrency": 2, 
+        "refresh": 3}
+   }
+],
+  "outbounds": [{
+    "protocol": "freedom",
+    "settings": {}
+  },{
+    "protocol": "blackhole",
+    "settings": {},
+    "tag": "blocked"
+  }],
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "ip": ["geoip:private"],
+        "outboundTag": "blocked"
+      }
+    ]
+  }
+}
