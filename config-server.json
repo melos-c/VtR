@@ -19,7 +19,7 @@
     },
     {
       "protocol": "vmess",
-      "port": "10000-20000",
+      "port": "10087-12086",
       "tag": "dynamicPort",
       "settings": {
         "default": {
