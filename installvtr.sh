@@ -46,3 +46,5 @@ reboot
 
 # Verify if BBR is installed successfully.
 #lsmod | grep bbr
+#yum install net-tools
+#netstat -lpnt 查看监听端口
