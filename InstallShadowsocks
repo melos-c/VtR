@@ -5,4 +5,6 @@ chmod +x shadowsocks.sh
 ./shadowsocks.sh 2>&1 | tee shadowsocks.log
 
 wget -O /etc/shadowsocks.json https://raw.githubusercontent.com/melos-c/VtR/master/ssconfig.json
-wget -O ssconfig.sh https://raw.githubusercontent.com/melos-c/VtR/master/shadowsocks.sh
+wget -O ssEditor.sh https://raw.githubusercontent.com/melos-c/VtR/master/ssConfigEditor.sh
+chmod +x ssEditor.sh
+
