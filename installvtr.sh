@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+
+
 yum install -y zip unzip
 #yum install net-tools
 wget https://github.com/v2ray/v2ray-core/releases/download/v4.20.0/v2ray-linux-64.zip
