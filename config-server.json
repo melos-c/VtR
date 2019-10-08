@@ -38,7 +38,7 @@
       "protocol": "shadowsocks",
       "settings": {
         "method": "chacha20",
-        "ota": true,
+        "ota": false,
         "password": "sSCI2016",
         "network": "tcp,udp"
       },
