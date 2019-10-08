@@ -1,0 +1,9 @@
+ray.mydomain.me #你的站点域名
+{
+  log /var/log/caddy/caddy.log
+  tls test@csds.xxx
+  proxy /v2ray localhost:1028 { #注意这里需要与v2ray中配置的监听端口及WebSocket所使用的HTTP协议路径一致
+    websocket
+    header_upstream -Origin
+  }
+}
