@@ -37,7 +37,7 @@
       "port": 20087,
       "protocol": "shadowsocks",
       "settings": {
-        "method": "chacha20-ietf-poly1305",
+        "method": "chacha20",
         "ota": true,
         "password": "sSCI2016",
         "network": "tcp,udp"
