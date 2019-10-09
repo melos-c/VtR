@@ -1,7 +1,7 @@
 {
   "inbounds": [
     {
-      "tag": "Desktop",
+      "tag": "Desktop1",
       "port": 10086,
       "protocol": "vmess",
       "settings": {
@@ -11,7 +11,20 @@
             "level": 1,
             "alterId": 16,
             "security": "auto"
-          },
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "tcpSettings": {}
+      }
+    },
+    {
+      "tag": "Desktop2",
+      "port": 10087,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
           {
             "id": "8ef39e0e-3709-47fa-85b5-aadf69906cc9",
             "level": 1,
@@ -26,13 +39,39 @@
       }
     },
     {
-      "tag": "mobile_tls",
+      "tag": "tls1",
       "port": 443,
       "protocol": "vmess",
       "settings": {
         "clients": [
           {
             "id": "b831381d-6324-4d53-ad4f-8cda48b30811",
+            "alterId": 16
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "tcpSettings": {},
+        "security": "tls",
+        "tlsSettings": {
+          "certificates": [
+            {
+              "certificateFile": "/etc/v2ray/v2ray.crt",
+              "keyFile": "/etc/v2ray/v2ray.key"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "tls2",
+      "port": 444,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "eecbbc1c-d90b-48df-2f9f-e0bdda7c9311",
             "alterId": 16
           }
         ]
