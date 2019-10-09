@@ -1,32 +1,63 @@
 echo "------------安装 caddy -------------------"
 curl https://getcaddy.com | bash -s personal
-#Check caddy location and version
 #which caddy                                
 #caddy -version 
 
 echo
 echo "------------配置 caddy -------------------"
-mkdir /etc/caddy
-#touch /etc/caddy/Caddyfile
-wget -O /etc/caddy/Caddyfile https://raw.githubusercontent.com/melos-c/VtR/master/Caddyfile
-chown -R root:www-data /etc/caddy
+##出于安全考虑，切勿以root身份运行Caddy二进制文件。 为了让Caddy能够以非root用户身份绑定到特权端口（例如80,443），您需要运行setcap命令
+setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
 
+#为Caddy创建一个专用的系统用户：caddy和一组同名的用户：
+useradd -r -d /var/www -M -s /sbin/nologin caddy
+
+#为Caddy Web服务器创建主目录/ var / www，为您的站点创建主目录/var/www/huaxiatech.xyz：
+mkdir -p /var/www/huaxiatech.xyz
+chown -R caddy:caddy /var/www
+
+#创建存储SSL证书的目录：
 mkdir /etc/ssl/caddy
-chown -R www-data:root /etc/ssl/caddy
+chown -R caddy:root /etc/ssl/caddy
 chmod 0770 /etc/ssl/caddy
 
-echo "-----------添加自启动服务------------------“
+#创建一个专用目录来存储Caddy配置文件Caddyfile：
+mkdir /etc/caddy
+chown -R root:caddy /etc/caddy
+#touch /etc/caddy/Caddyfile 创建Caddyfile
+# tee命令用于将数据重定向到文件，另一方面还可以提供一份重定向数据的副本作为后续命令的stdin。简单的说就是把数据重定向到给定文件和屏幕上。
+cat <<EOF | sudo tee -a /etc/caddy/Caddyfile
+huaxiatech.xyz # 域名
+{
+  log ./caddy.log
+  proxy /ray localhost:20088 { # 20088是V2ray配置的端口
+    websocket
+    header_upstream -Origin
+  }
+}
+EOF
+
+
+#wget -O /etc/caddy/Caddyfile https://raw.githubusercontent.com/melos-c/VtR/master/Caddyfile
+chown caddy:caddy /etc/caddy/Caddyfile
+chmod 444 /etc/caddy/Caddyfile
+
+#启动Caddy服务并使其在系统启动时自动启动：
 curl -s https://raw.githubusercontent.com/melos-c/VtR/master/caddy.service -o /etc/systemd/system/caddy.service
-sudo systemctl daemon-reload
-systemctl enable caddy.service # 设置 caddy 服务自启动
-systemctl status caddy.service # 查看 caddy 状态
+systemctl daemon-reload
+systemctl enable caddy.service
+systemctl start caddy.service
+systemctl status caddy.service
 
-touch /var/log/caddy/caddy.log
-chown -R root:www-data /var/log/caddy/
-chmod 777 /var/log/caddy/caddy.log
-ulimit -n 8192
+#为了允许访问者访问您的Caddy站点，您需要打开端口80和443：
+firewall-cmd --permanent --zone=public --add-service=http 
+firewall-cmd --permanent --zone=public --add-service=https
+firewall-cmd --permanent --zone=public --add-port=80/tcp
+firewall-cmd --permanent --zone=public --add-port=443/tcp
+firewall-cmd --reload
 
-echo
-echo "-----------启动caddy---------------------"
-systemctl start caddy
-systemctl status caddy
+#使用以下命令在Caddy站点主目录中创建名为index.html的文件：
+echo '<h1>Hello World!</h1>' | sudo tee /var/www/huaxiatech.xyz/index.html
+systemctl restart caddy.service
+
+
+#ulimit -n 8192
