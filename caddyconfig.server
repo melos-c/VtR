@@ -9,13 +9,13 @@
           {
             "id": "464bf080-3aaa-4ee4-a888-a4dbdc3010c2",
             "level": 1,
-            "alterId": 64,
+            "alterId": 16,
             "security": "auto"
           },
           {
             "id": "8ef39e0e-3709-47fa-85b5-aadf69906cc9",
             "level": 1,
-            "alterId": 64,
+            "alterId": 16,
             "security": "auto"
           }
         ]
