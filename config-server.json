@@ -75,7 +75,7 @@
       }
     },
     {
-      "port": 446,
+      "port": 443,
       "protocol": "vmess",
       "settings": {
         "clients": [
