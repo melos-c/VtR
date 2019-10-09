@@ -1,8 +1,8 @@
-huaxiatech.xyz #你的站点域名
+huaxiatech.xyz
 {
   log /var/log/caddy/caddy.log
   tls test@csds.xxx
-  proxy /ray localhost:20086 { #注意这里需要与v2ray中配置的监听端口及WebSocket所使用的HTTP协议路径一致
+  proxy /ray localhost:20088 { 
     websocket
     header_upstream -Origin
   }
