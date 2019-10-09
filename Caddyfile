@@ -1,7 +1,7 @@
-huaxiatech.xyz
-{
+huaxiatech.xyz{
   log /var/log/caddy/caddy.log
-  tls test@csds.xxx
+  root /var/www/huaxiatech.xyz
+  tls 9435952@qq.com
   proxy /ray localhost:20088 { 
     websocket
     header_upstream -Origin
