@@ -1,4 +1,4 @@
-ray.mydomain.me #你的站点域名
+huaxiatech.xyz #你的站点域名
 {
   log /var/log/caddy/caddy.log
   tls test@csds.xxx
