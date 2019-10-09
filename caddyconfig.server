@@ -1,0 +1,100 @@
+{
+  "inbounds": [
+    {
+      "tag": "Desktop",
+      "port": 10086,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "464bf080-3aaa-4ee4-a888-a4dbdc3010c2",
+            "level": 1,
+            "alterId": 64,
+            "security": "auto"
+          },
+          {
+            "id": "8ef39e0e-3709-47fa-85b5-aadf69906cc9",
+            "level": 1,
+            "alterId": 64,
+            "security": "auto"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "tcpSettings": {}
+      }
+    },
+    {
+      "tag": "mobile_tls",
+      "port": 443,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30811",
+            "alterId": 16
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "tcpSettings": {},
+        "security": "tls",
+        "tlsSettings": {
+          "certificates": [
+            {
+              "certificateFile": "/etc/v2ray/v2ray.crt",
+              "keyFile": "/etc/v2ray/v2ray.key"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "shadowsocks",
+      "port": 20087,
+      "protocol": "shadowsocks",
+      "settings": {
+        "method": "chacha20",
+        "ota": false,
+        "password": "sSCI2016",
+        "network": "tcp,udp"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "auto",
+        "tcpSettings": {}
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "blocked"
+    }
+  ],
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "blocked"
+      }
+    ]
+  },
+  "log": {
+    "access": "/var/log/v2ray/access.log",
+    "error": "/var/log/v2ray/error.log",
+    "loglevel": "warning"
+  },
+  "dns": {},
+  "stats": {}
+}
