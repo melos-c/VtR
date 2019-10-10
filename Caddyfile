@@ -1,4 +1,5 @@
 huaxiatech.xyz{
+  gzip
   log /var/log/caddy/caddy.log
   root /var/www/huaxiatech.xyz
   tls 9435952@qq.com
