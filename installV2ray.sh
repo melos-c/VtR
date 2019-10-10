@@ -32,6 +32,7 @@ sudo ~/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
 sudo ~/.acme.sh/acme.sh --installcert -d huaxiatech.xyz --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc
 # Manually renew the cert when it expires...
 #sudo ~/.acme.sh/acme.sh --renew -d huaxiatech.xyz--force --ecc
+#acme.sh --cron -f
 
 echo "===== Installing V2Ray ==================="
 wget https://github.com/v2ray/v2ray-core/releases/download/v4.20.0/v2ray-linux-64.zip
