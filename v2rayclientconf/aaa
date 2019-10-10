@@ -1,1 +1,82 @@
-
+{
+  "log": {},
+  "dns": {},
+  "stats": {},
+  "inbounds": [
+    {
+      "port": "1080",
+      "protocol": "socks",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      },
+      "tag": "in-0"
+    },
+    {
+      "port": "1081",
+      "protocol": "http",
+      "settings": {},
+      "tag": "in-1"
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "huaxiatech.xyz",
+            "port": 443,
+            "users": [
+              {
+                "id": "b831381d-6324-4d53-ad4f-8cda48b30811",
+                "alterId": 16
+              }
+            ]
+          }
+        ]
+      },
+      "tag": "out-0",
+      "streamSettings": {
+        "network": "tcp",
+        "security": "tls",
+        "tcpSettings": {},
+        "tlsSettings": {
+          //"serverName": "huaxiatech.xyz"
+        }
+      }
+    },
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "tag": "blocked",
+      "protocol": "blackhole",
+      "settings": {}
+    }
+  ],
+  "routing": {
+    "domainStrategy": "IPOnDemand",
+    "rules": [
+      {
+        "type": "field",
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "direct"
+      }
+    ]
+  },
+  "policy": {},
+  "reverse": {},
+  "transport": {}
+}
