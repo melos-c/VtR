@@ -2,6 +2,8 @@
 
 date -R
 echo "====== Installing Prerequisite ==========="
+read -p "Press [Enter] key to Continue..."
+
 
 yum install -y zip unzip
 yum install net-tools
@@ -12,6 +14,7 @@ mkdir /usr/bin/v2ray
 mkdir /var/log/v2ray
 
 echo "====== Openning Necessary Ports =========="
+read -p "Press [Enter] key to Continue..."
 firewall-cmd --zone=public --add-port=10086/tcp --permanent
 firewall-cmd --zone=public --add-port=10087/tcp --permanent
 firewall-cmd --zone=public --add-port=80/tcp --permanent
@@ -24,7 +27,7 @@ firewall-cmd --zone=public --add-port=20087/udp --permanent
 firewall-cmd --reload
 
 echo "====== Installing ACME and SSL Cert & Key ====="
-echo "******************************************"
+read -p "Press [Enter] key to Continue..."
 yum -y install socat.x86_64
 curl  https://get.acme.sh | sh
 source ~/.bashrc
@@ -38,6 +41,7 @@ sudo ~/.acme.sh/acme.sh --installcert -d huaxiatech.xyz --fullchainpath /etc/v2r
 #acme.sh --cron -f
 
 echo "===== Installing V2Ray ==================="
+read -p "Press [Enter] key to Continue..."
 wget https://github.com/v2ray/v2ray-core/releases/download/v4.20.0/v2ray-linux-64.zip
 unzip v2ray-linux-64.zip -d v2ray
 
@@ -60,6 +64,7 @@ echo "====== List the Listening Ports =========="
 netstat -lpnt
 
 echo "====== Installing BBR ===================="
+read -p "Press [Enter] key to Continue..."
 wget –no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
 chmod +x bbr.sh
 ./bbr.sh
