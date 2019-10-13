@@ -6,7 +6,10 @@ echo "====== Installing Prerequisite ==========="
 yum install -y zip unzip
 yum install net-tools
 yum -y update
-
+mkdir /etc/v2ray/
+mkdir v2ray
+mkdir /usr/bin/v2ray
+mkdir /var/log/v2ray
 
 echo "====== Openning Necessary Ports =========="
 firewall-cmd --zone=public --add-port=10086/tcp --permanent
@@ -20,20 +23,12 @@ firewall-cmd --zone=public --add-port=20087/udp --permanent
 #firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --reload
 
-
-mkdir /etc/v2ray/
-mkdir v2ray
-mkdir /usr/bin/v2ray
-mkdir /var/log/v2ray
-
 echo "====== Installing ACME and SSL Cert & Key ====="
+echo "******************************************"
 yum -y install socat.x86_64
 curl  https://get.acme.sh | sh
 source ~/.bashrc
 ~/.acme.sh/acme.sh --upgrade --auto-upgrade
-
-echo
-echo "******************************************"
 #read -p "Input Domain Name:" domain
 sudo ~/.acme.sh/acme.sh --issue -d huaxiatech.xyz --standalone -k ec-256
 #将证书生成到 /etc/v2ray/ 文件夹，更新证书之后还得把新证书生成到 /etc/v2ray
@@ -44,27 +39,24 @@ sudo ~/.acme.sh/acme.sh --installcert -d huaxiatech.xyz --fullchainpath /etc/v2r
 
 echo "===== Installing V2Ray ==================="
 wget https://github.com/v2ray/v2ray-core/releases/download/v4.20.0/v2ray-linux-64.zip
-
 unzip v2ray-linux-64.zip -d v2ray
-cd v2ray
-cp v2ray /usr/bin/v2ray/v2ray
-cp v2ctl /usr/bin/v2ray/v2ctl
-cp geoip.dat /usr/bin/v2ray/geoip.dat
-cp geosite.dat /usr/bin/v2ray/geosite.dat
-#cp vpoint_vmess_freedom.json /etc/v2ray/config.json
-cp ./systemd/v2ray.service /usr/lib/systemd/system
+
+cp ./v2ray/v2ray /usr/bin/v2ray/v2ray
+cp ./v2ray/v2ctl /usr/bin/v2ray/v2ctl
+cp ./v2ray/geoip.dat /usr/bin/v2ray/geoip.dat
+cp ./v2ray/geosite.dat /usr/bin/v2ray/geosite.dat
+#cp ./v2ray/vpoint_vmess_freedom.json /etc/v2ray/config.json
+cp ./v2ray/systemd/v2ray.service /usr/lib/systemd/system
 touch /var/log/v2ray/access.log
 touch /var/log/v2ray/error.log
 touch /var/run/v2ray.pid
-cd ..
-#cd ~
 wget -O /etc/v2ray/config.json https://raw.githubusercontent.com/melos-c/VtR/master/v2rayconfig.server
 
 systemctl enable v2ray
 systemctl start v2ray
 systemctl status v2ray
 
-echo "==== List the Listening Ports ======="
+echo "====== List the Listening Ports =========="
 netstat -lpnt
 
 echo "====== Installing BBR ===================="
@@ -75,5 +67,6 @@ reboot
 
 # Verify if BBR is installed successfully.
 #lsmod | grep bbr
-
+#cd ..
+#cd ~
 
