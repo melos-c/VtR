@@ -33,6 +33,7 @@ huaxiatech.xyz{
   log ./caddy.log
   gzip
   root /var/www/huaxiatech.xyz
+  index index.html index.htm
   tls ambrose.chg@gmail.com #自动申请证书
   #tls /etc/ssl/cert.pem /etc/ssl/key.pem 使用此指令则不自动申请证书。
   proxy /ray localhost:20088 
