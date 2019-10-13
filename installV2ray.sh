@@ -14,8 +14,8 @@ firewall-cmd --zone=public --add-port=443/tcp --permanent
 firewall-cmd --zone=public --add-port=444/tcp --permanent
 firewall-cmd --zone=public --add-port=20087/tcp --permanent
 firewall-cmd --zone=public --add-port=20087/udp --permanent
-firewall-cmd --permanent --zone=public --add-service=http 
-firewall-cmd --permanent --zone=public --add-service=https
+#firewall-cmd --permanent --zone=public --add-service=http 
+#firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --reload
 
 echo "====== Installing ACME and SSL Cert & Key ====="
