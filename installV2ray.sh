@@ -2,9 +2,11 @@
 
 date -R
 echo "====== Installing Prerequisite ==========="
-yum -y update
+
 yum install -y zip unzip
 yum install net-tools
+yum -y update
+
 
 echo "====== Openning Necessary Ports =========="
 firewall-cmd --zone=public --add-port=10086/tcp --permanent
@@ -18,16 +20,22 @@ firewall-cmd --zone=public --add-port=20087/udp --permanent
 #firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --reload
 
+
+mkdir /etc/v2ray/
+mkdir v2ray
+mkdir /usr/bin/v2ray
+mkdir /var/log/v2ray
+
 echo "====== Installing ACME and SSL Cert & Key ====="
-yum -y install netcat
+yum -y install socat.x86_64
 curl  https://get.acme.sh | sh
 source ~/.bashrc
-acme.sh --upgrade --auto-upgrade
+~/.acme.sh/acme.sh --upgrade --auto-upgrade
 
 echo
 echo "******************************************"
 #read -p "Input Domain Name:" domain
-sudo ~/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
+sudo ~/.acme.sh/acme.sh --issue -d huaxiatech.xyz --standalone -k ec-256
 #将证书生成到 /etc/v2ray/ 文件夹，更新证书之后还得把新证书生成到 /etc/v2ray
 sudo ~/.acme.sh/acme.sh --installcert -d huaxiatech.xyz --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc
 # Manually renew the cert when it expires...
@@ -36,11 +44,6 @@ sudo ~/.acme.sh/acme.sh --installcert -d huaxiatech.xyz --fullchainpath /etc/v2r
 
 echo "===== Installing V2Ray ==================="
 wget https://github.com/v2ray/v2ray-core/releases/download/v4.20.0/v2ray-linux-64.zip
-
-mkdir v2ray
-mkdir /usr/bin/v2ray
-mkdir /etc/v2ray/
-mkdir /var/log/v2ray
 
 unzip v2ray-linux-64.zip -d v2ray
 cd v2ray
