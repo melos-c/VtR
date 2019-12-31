@@ -1,5 +1,5 @@
 read -p "Enter Full Revision Number of V2RAY [eg. 4.22.0]: " ver
-wget https://github.com/v2ray/v2ray-core/releases/download/$ver/v2ray-linux-64.zip
+wget https://github.com/v2ray/v2ray-core/releases/download/v$ver/v2ray-linux-64.zip
 unzip v2ray-linux-64.zip -d v2ray
 
 systemctl stop v2ray
