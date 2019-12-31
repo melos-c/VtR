@@ -42,6 +42,7 @@ sudo ~/.acme.sh/acme.sh --installcert -d huaxiatech.xyz --fullchainpath /etc/v2r
 
 echo "===== Installing V2Ray ==================="
 read -p "Press [Enter] key to Continue..."
+wget https://raw.githubusercontent.com/melos-c/VtR/master/UpdateV2ray.sh
 wget https://github.com/v2ray/v2ray-core/releases/download/v4.22.0/v2ray-linux-64.zip
 unzip v2ray-linux-64.zip -d v2ray
 
@@ -55,6 +56,7 @@ touch /var/log/v2ray/access.log
 touch /var/log/v2ray/error.log
 touch /var/run/v2ray.pid
 wget -O /etc/v2ray/config.json https://raw.githubusercontent.com/melos-c/VtR/master/v2rayconfig.server
+
 
 rm -rf v2ray
 rm -f v2ray-linux-64.zip
