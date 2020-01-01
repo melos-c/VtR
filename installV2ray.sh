@@ -37,7 +37,7 @@ sudo ~/.acme.sh/acme.sh --issue -d huaxiatech.xyz --standalone -k ec-256
 #将证书生成到 /etc/v2ray/ 文件夹，更新证书之后还得把新证书生成到 /etc/v2ray
 sudo ~/.acme.sh/acme.sh --installcert -d huaxiatech.xyz --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc
 # Manually renew the cert when it expires...
-#sudo ~/.acme.sh/acme.sh --renew -d huaxiatech.xyz--force --ecc
+#sudo ~/.acme.sh/acme.sh --renew -d huaxiatech.xyz --force --ecc
 #acme.sh --cron -f
 
 echo "===== Installing V2Ray ==================="
