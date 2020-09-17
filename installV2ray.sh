@@ -17,7 +17,7 @@ echo "====== Openning Necessary Ports =========="
 read -p "Press [Enter] key to Continue..."
 firewall-cmd --zone=public --add-port=10086/tcp --permanent
 firewall-cmd --zone=public --add-port=10087/tcp --permanent
-firewall-cmd --zone=public --add-port=80/tcp --permanent
+firewall-cmd --zone=public --add-port=80/tcp --permanent #used for acme.sh issue and update certs.
 firewall-cmd --zone=public --add-port=443/tcp --permanent
 firewall-cmd --zone=public --add-port=444/tcp --permanent
 firewall-cmd --zone=public --add-port=20087/tcp --permanent
