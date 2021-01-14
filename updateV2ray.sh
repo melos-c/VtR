@@ -27,9 +27,9 @@ reboot
 echo "====== Update Domain"
 read -p "Press [Enter] key to Continue..."
 read -p "Input New Domain Name:" domain
-sudo ~/.acme.sh/acme.sh --issue -d domain --standalone -k ec-256
+sudo ~/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
 #将证书生成到 /etc/v2ray/ 文件夹，更新证书之后还得把新证书生成到 /etc/v2ray
-sudo ~/.acme.sh/acme.sh --installcert -d domain --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc
+sudo ~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc
 # Manually renew the cert when it expires...
 #sudo ~/.acme.sh/acme.sh --renew -d huaxiatech.xyz --force --ecc
 #acme.sh --cron -f
