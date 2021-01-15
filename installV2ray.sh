@@ -3,7 +3,7 @@
 cat <<MENUEND
 +-----------------------------------------+
 |                                         |
-|	      V2Ray + TLS Toolkit               |
+|	      V2Ray + TLS Toolkit         |
 |                                         |
 +-----------------------------------------+
 主菜单
@@ -18,7 +18,15 @@ MENUEND
 
 read -p "请选择相应的菜单【输入对应的数字序号】：" menu
 
-
+function InstallPrerequisite(){
+	yum install -y zip unzip
+	yum install net-tools
+	yum -y update
+	mkdir /etc/v2ray/
+	mkdir v2ray
+	mkdir /usr/bin/v2ray
+	mkdir /var/log/v2ray
+}
 
 
 date -R
