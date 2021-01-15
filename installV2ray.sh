@@ -2,7 +2,7 @@
 
 #menu functions
 
-function mainmenu(){
+function mainmenu{
 cat <<MENUEND
 +-----------------------------------------+
 |                                         |
@@ -20,20 +20,18 @@ cat <<MENUEND
 MENUEND
 }
 
-function mainmenu(){
+function portmenu(){
 cat <<MENUEND
 	 端口管理
 +-----------------------------------------+
 	【1】开放端口
-	【2】全新关闭端口
+	【2】关闭端口
 	【3】显示开放的端口
 	【4】退出
 MENUEND
 }
 
-read -p "请选择相应的菜单【输入对应的数字序号】：" menu
-
-function InstallPrerequisite(){
+function InstallPrerequisite{
 	yum install -y zip unzip
 	yum install net-tools
 	yum -y update
@@ -42,6 +40,27 @@ function InstallPrerequisite(){
 	mkdir /usr/bin/v2ray
 	mkdir /var/log/v2ray
 }
+
+
+date -R
+read -p "请选择相应的菜单【输入对应的数字序号】：" menu
+case $menu in
+1)
+InstallPrerequistite
+portmenu
+
+;;
+2)
+;;
+3)
+;;
+4)
+;;
+*)
+;;
+esac
+
+
 
 #reset
 #clear
