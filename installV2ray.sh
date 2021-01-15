@@ -1,5 +1,26 @@
 #!/usr/bin/env bash
 
+cat <<MENUEND
++-----------------------------------------+
+|                                         |
+|	      V2Ray + TLS Toolkit               |
+|                                         |
++-----------------------------------------+
+主菜单
+	【1】全新安装-V2ray + TLS
+	【2】全新安装-V2ray
+	【3】更新V2ray
+	【4】更换TLS网址
+	【5】端口管理
+	【6】重启V2ray
+	【7】退出
+MENUEND
+
+read -p "请选择相应的菜单【输入对应的数字序号】：" menu
+
+
+
+
 date -R
 echo "====== Installing Prerequisite ==========="
 read -p "Press [Enter] key to Continue..."
