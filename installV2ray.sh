@@ -29,6 +29,16 @@ cat <<MENUEND
 	【3】显示开放的端口
 	【4】退出
 MENUEND
+
+read -p "请选择相应的菜单【输入对应的数字序号】：" submenu
+case $submenu in
+	1)
+		read -p "请输入要开放的端口数字【多个端口中间以空格隔开】：" -a ports;;
+		OpenPorts "${ports[*]}";;
+	2)
+		
+	3)
+esac
 }
 
 function InstallPrerequisite{
@@ -39,6 +49,14 @@ function InstallPrerequisite{
 	mkdir v2ray
 	mkdir /usr/bin/v2ray
 	mkdir /var/log/v2ray
+}
+
+function OpenPorts{
+	arr = $1	
+	for i in ${arr[*]}; do
+		firewall-cmd --zone=public --add-port=$i/tcp --permanent
+	done
+	firewall --reload
 }
 
 
@@ -56,6 +74,9 @@ portmenu
 ;;
 4)
 ;;
+5)
+	portmenu;;
+	
 *)
 ;;
 esac
