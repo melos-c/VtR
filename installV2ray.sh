@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+#menu functions
+
+function mainmenu(){
 cat <<MENUEND
 +-----------------------------------------+
 |                                         |
@@ -15,6 +18,18 @@ cat <<MENUEND
 	【6】重启V2ray
 	【7】退出
 MENUEND
+}
+
+function mainmenu(){
+cat <<MENUEND
+	 端口管理
++-----------------------------------------+
+	【1】开放端口
+	【2】全新关闭端口
+	【3】显示开放的端口
+	【4】退出
+MENUEND
+}
 
 read -p "请选择相应的菜单【输入对应的数字序号】：" menu
 
@@ -27,6 +42,10 @@ function InstallPrerequisite(){
 	mkdir /usr/bin/v2ray
 	mkdir /var/log/v2ray
 }
+
+#reset
+#clear
+printf "\033c"
 
 
 date -R
