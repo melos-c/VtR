@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#https://raw.githubusercontent.com/melos-c/VtR/master/vray
 
 date -R
 echo "====== Installing Prerequisite ==========="
