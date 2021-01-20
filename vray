@@ -31,7 +31,7 @@ firewall-cmd --reload
 echo "===== Installing V2Ray ==================="
 read -p "Press [Enter] key to Continue..."
 wget https://raw.githubusercontent.com/melos-c/VtR/master/updateV2ray.sh
-wget https://github.com/v2ray/v2ray-core/releases/download/v4.31.0/v2ray-linux-64.zip
+wget https://github.com/v2fly/v2ray-core/releases/download/v4.31.0/v2ray-linux-64.zip
 unzip v2ray-linux-64.zip -d v2ray
 
 cp ./v2ray/v2ray /usr/bin/v2ray/v2ray
