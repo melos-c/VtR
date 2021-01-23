@@ -37,58 +37,6 @@
                 "network": "tcp",
                 "tcpSettings": {}
             }
-        },
-        {
-            "tag": "tls1",
-            "port": 443,
-            "protocol": "vmess",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "b831381d-6324-4d53-ad4f-8cda48b30811",
-                        "alterId": 16
-                    }
-                ]
-            },
-            "streamSettings": {
-                "network": "tcp",
-                "tcpSettings": {},
-                "security": "tls",
-                "tlsSettings": {
-                    "certificates": [
-                        {
-                            "certificateFile": "/usr/local/etc/v2ray/v2ray.crt",
-                            "keyFile": "/usr/local/etc/v2ray/v2ray.key"
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "tag": "tls2",
-            "port": 444,
-            "protocol": "vmess",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "eecbbc1c-d90b-48df-2f9f-e0bdda7c9311",
-                        "alterId": 16
-                    }
-                ]
-            },
-            "streamSettings": {
-                "network": "tcp",
-                "tcpSettings": {},
-                "security": "tls",
-                "tlsSettings": {
-                    "certificates": [
-                        {
-                            "certificateFile": "/usr/local/etc/v2ray/v2ray.crt",
-                            "keyFile": "/usr/local/etc/v2ray/v2ray.key"
-                        }
-                    ]
-                }
-            }
         }
     ],
     "outbounds": [
