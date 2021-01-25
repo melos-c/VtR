@@ -1,4 +1,13 @@
 {
+    "reverse": { //VPS的反向代理设置，用前删除以下所有的注释
+        "portals": [
+            {
+                "tag": "portal",
+                "domain": "huaxiatech.buzz" //必须和NAS端设定的域名一样
+            }
+        ]
+    },
+
     "inbounds": [
         {
             "tag": "Desktop1",
@@ -89,6 +98,29 @@
                     ]
                 }
             }
+        },
+        {
+            "tag": "external", //接收外网访问设备“手机”访问的inbound
+            "port": 80,
+            "protocol": "dokodemo-door",
+            "settings": {
+                "address": "127.0.0.1",
+                "port": 80,
+                "network": "tcp"
+            }
+        },
+        {
+            "tag": "tunnel", //接收NAS主动发出的请求
+            "port": 16823,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "b831381d-6973-4d53-ad4f-8cda48b32417",
+                        "alterId": 64
+                    }
+                ]
+            }
         }
     ],
     "outbounds": [
@@ -104,6 +136,23 @@
     ],
     "routing": {
         "rules": [
+            {
+                "type": "field", //路由规则，接收外网请求后发给内网NAS
+                "inboundTag": [
+                    "external"
+                ],
+                "outboundTag": "portal"
+            },
+            {
+                "type": "field", //路由规则，让VPS能够识别这是NAS主动发起的反向代理连接
+                "inboundTag": [
+                    "tunnel"
+                ],
+                "domain": [
+                    "full:huaxiatech.buzz"
+                ],
+                "outboundTag": "portal"
+            },
             {
                 "type": "field",
                 "ip": [
