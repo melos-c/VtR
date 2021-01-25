@@ -1,9 +1,9 @@
 {
-    "reverse": { //VPS的反向代理设置，用前删除以下所有的注释
+    "reverse": { 
         "portals": [
             {
                 "tag": "portal",
-                "domain": "nas.ambrose.com" //可以是虚拟域名，但是必须和NAS端设定的域名一样,
+                "domain": "nas.ambrose.com"
             }
         ]
     },
