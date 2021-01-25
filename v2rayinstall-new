@@ -16,6 +16,8 @@ firewall-cmd --zone=public --add-port=10087/tcp --permanent
 firewall-cmd --zone=public --add-port=80/tcp --permanent #used for acme.sh issue and update certs.
 firewall-cmd --zone=public --add-port=443/tcp --permanent
 firewall-cmd --zone=public --add-port=444/tcp --permanent
+firewall-cmd --zone=public --add-port=16823/tcp --permanent
+firewall-cmd --zone=public --add-port=16823/udp --permanent
 #firewall-cmd --permanent --zone=public --add-service=http 
 #firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --reload
